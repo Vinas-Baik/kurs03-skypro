@@ -2,6 +2,7 @@ from datetime import datetime
 
 
 class MyOperation():
+    """MyOperation"""
 
     def __init__(self, id_operation: int, date_operation: str, state_operation: str,
                  operationAmount: dict, description_operation: str, from_operation: str, to_operation: str):
@@ -14,8 +15,8 @@ class MyOperation():
         self.to_operation = to_operation
 
     def __repr__(self):
-        return f"MyOperation({self.id_operation}, '{self.date_operation}', '{self.state_operation}',\n" \
-               f"'{self.operationAmount}',\n'{self.description_operation}', '{self.from_operation}', " \
+        return f"{self.__doc__}({self.id_operation}, '{self.date_operation}', '{self.state_operation}',\n" \
+               f"\t\t\t'{self.operationAmount}',\n\t\t\t'{self.description_operation}', '{self.from_operation}', " \
                f"'{self.to_operation}')"
 
     def __str__(self):
