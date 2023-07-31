@@ -42,9 +42,10 @@ def load_json_file(name_file):
     """
     json_list = None  # словарь
     # формируем полный путь до файла
-    name_file1 = full_path_name_file(name_file)
+    # name_file1 = full_path_name_file(name_file)
     # print(name_file)
 
+    name_file1 = 'C:\\Users\\user\\Мой диск (svn1409@gmail.com)\\Обучение\\skypro\\Проекты\\kurs03-skypro\\utils\\test.json'
     try:
         if os.path.exists(name_file1):
             with open(name_file, 'r', encoding='UTF-8') as file:
