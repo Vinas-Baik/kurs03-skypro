@@ -15,8 +15,8 @@ class MyOperation():
         self.to_operation = to_operation
 
     def __repr__(self):
-        return f"{self.__doc__}({self.id_operation}, '{self.date_operation}', '{self.state_operation}',\n" \
-               f"\t\t\t'{self.operationAmount}',\n\t\t\t'{self.description_operation}', '{self.from_operation}', " \
+        return f"{self.__doc__}({self.id_operation},'{self.date_operation}','{self.state_operation}'," \
+               f"'{self.operationAmount}','{self.description_operation}','{self.from_operation}'," \
                f"'{self.to_operation}')"
 
     def __str__(self):
