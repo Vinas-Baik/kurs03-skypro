@@ -20,12 +20,15 @@ class MyOperation():
                f"'{self.to_operation}')"
 
     def __str__(self):
-        from_text = self.from_operation.split()
+        if self.from_operation != None:
+            from_text = self.from_operation.split()
+            from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
+        else:
+            from_temp_text = ''
         to_text = self.to_operation.split()
 
         return f"{self.date_operation.strftime('%d.%m.%Y')} {self.description_operation}\n" \
-               f"{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]} -> " \
-               f"{to_text[0]} **{to_text[1][-4:]}\n" \
+               f"{from_temp_text} -> {to_text[0]} **{to_text[1][-4:]}\n" \
                f"{self.operationAmount['amount']} {self.operationAmount['currency']['name']}\n"
 
 

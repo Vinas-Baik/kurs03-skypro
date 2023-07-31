@@ -1,21 +1,5 @@
 import os
 import json
-import requests
-
-
-def load_json_url(url_name):
-    """
-    Загрузка JSON словаря с Интернета
-    :param url_name: ссылка на JSON словарь в Интернете
-    :return: загруженный JSON словарь или None (если страница не доступна)
-    """
-    result = requests.get(url_name, verify=False)
-    # print(result.status_code)
-    if result.status_code != 200:
-        # print(text_error('Ссылка ' + url_name + ' не существует, проверьте правильность'))
-        return None
-    return result.json()
-
 
 def text_error(text=''):
     """
@@ -31,8 +15,8 @@ def full_path_name_file(name_file):
     :param name_file: имя файла с указанием подпапки
     :return: полный пусть в UNIX системы
     """
-    name_file = os.getcwd() + '/' + name_file
-    return os.path.join(*name_file.replace('\\','/').split('/'))
+    return os.getcwd() + '\\' + name_file
+    # return os.path.join(*name_file.replace('\\','/').split('/'))
 
 def load_json_file(name_file):
     """
@@ -42,10 +26,10 @@ def load_json_file(name_file):
     """
     json_list = None  # словарь
     # формируем полный путь до файла
-    # name_file1 = full_path_name_file(name_file)
-    # print(name_file)
+    name_file1 = full_path_name_file(name_file)
 
-    name_file1 = 'C:\\Users\\user\\Мой диск (svn1409@gmail.com)\\Обучение\\skypro\\Проекты\\kurs03-skypro\\utils\\test.json'
+    # name_file1 = 'C:\\Users\\user\\Мой диск (svn1409@gmail.com)\\Обучение\\skypro\\Проекты\\kurs03-skypro\\utils\\test.json'
+
     try:
         if os.path.exists(name_file1):
             with open(name_file, 'r', encoding='UTF-8') as file:
@@ -88,7 +72,3 @@ def check_line_entry(text='', allowed_сhars='', error_string=''):
                 print(text_error(error_string))
 
     return input_string
-
-
-# print(load_json_file('data.json'))
-print(load_json_file('test.json'))
