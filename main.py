@@ -34,8 +34,6 @@ def main():
 
     count_EXECUTED = 0
 
-    operation_list.sort(key='date')
-
     # for temp_oper in operation_list:
 
 
