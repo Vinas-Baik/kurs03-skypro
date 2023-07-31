@@ -17,19 +17,27 @@ def main():
     json_list = my_utils.load_json_file(FILE_JSON)
 
     for t_json in json_list:
-        print(t_json)
+        # print(t_json)
         if t_json == {}:
             continue
         if 'from' in t_json:
-            operation_list.append(
-                my_class.MyOperation(t_json['id'], t_json['date'], t_json['state'], t_json['operationAmount'],
-                                     t_json['description'], t_json['from'], t_json['to']))
+            operation_list.append(my_class.MyOperation(t_json['id'], t_json['date'], t_json['state'],
+                                                       t_json['operationAmount'], t_json['description'],
+                                                       t_json['from'], t_json['to']))
         else:
-            operation_list.append(my_class.MyOperation( t_json['id'], t_json['date'], t_json['state'], t_json['operationAmount'],
-                                                        t_json['description'], None, t_json['to']))
+            operation_list.append(my_class.MyOperation( t_json['id'], t_json['date'], t_json['state'],
+                                                        t_json['operationAmount'], t_json['description'],
+                                                        None, t_json['to']))
 
-    for t_oper in operation_list:
-        print(t_oper)
+    # for t_oper in operation_list:
+    #     print(t_oper)
+
+    count_EXECUTED = 0
+
+    operation_list.sort(key='date')
+
+    # for temp_oper in operation_list:
+
 
 
 main()
