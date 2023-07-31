@@ -16,10 +16,11 @@ def test_myclass():
            "13.07.2022 Перевод с карты на счет\nMaestro 1308 79** **** 7170 -> Счет **8612\n97853.86 руб.\n"
 
     # тестирование проверки вывода __repr__
-    # assert myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
-    #                            {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
-    #                            "Перевод с карты на счет", "Maestro 1308795367077170", "Счет 96527012349577388612") == \
-    #        "MyOperation(667307132,'2022-07-13 18:51:29.313309','EXECUTED'," \
-    #        "'{'amount': '97853.86', 'currency': {'name': 'руб.', 'code': 'RUB'}}'," \
-    #        "'Перевод с карты на счет','Maestro 1308795367077170','Счет 96527012349577388612')"
+
+    test_my_oper = myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
+                                       {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
+                                       "Перевод с карты на счет", "Maestro 1308795367077170", "Счет 96527012349577388612")
+    result_test_repr = repr(test_my_oper)
+
+    assert test_my_oper.__repr__() == result_test_repr
 
