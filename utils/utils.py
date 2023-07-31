@@ -12,7 +12,7 @@ def load_json_url(url_name):
     result = requests.get(url_name, verify=False)
     # print(result.status_code)
     if result.status_code != 200:
-        print(text_error('Ссылка ' + url_name + ' не существует, проверьте правильность'))
+        # print(text_error('Ссылка ' + url_name + ' не существует, проверьте правильность'))
         return None
     return result.json()
 
@@ -31,7 +31,7 @@ def full_path_name_file(name_file):
     :param name_file: имя файла с указанием подпапки
     :return: полный пусть в UNIX системы
     """
-    # return os.getcwd() + '/' + name_file
+    name_file = os.getcwd() + '/' + name_file
     return os.path.join(*name_file.replace('\\','/').split('/'))
 
 def load_json_file(name_file):
@@ -42,17 +42,20 @@ def load_json_file(name_file):
     """
     json_list = None  # словарь
     # формируем полный путь до файла
-    name_file = full_path_name_file(name_file)
+    name_file1 = full_path_name_file(name_file)
     # print(name_file)
 
     try:
-        if os.path.exists(name_file):
+        if os.path.exists(name_file1):
             with open(name_file, 'r', encoding='UTF-8') as file:
                 json_list = json.load(file)
         else:                                       # если файла нет, то ошибка
-            print(text_error('Файл ' + name_file + ' не существует, проверьте наличие файла по указанному пути'))
+            # print(text_error('Файл ' + name_file + ' не существует, проверьте наличие файла по указанному пути'))
+            json_list = None
+
     except json.JSONDecodeError:                    # если ошибка чтения JSON словаря, то выводим ошибку
-        print(text_error('Файл ' + name_file + ' не является JSON файлом'))
+        # print(text_error('Файл ' + name_file + ' не является JSON файлом'))
+        json_list = None
 
     return json_list
 
@@ -84,3 +87,7 @@ def check_line_entry(text='', allowed_сhars='', error_string=''):
                 print(text_error(error_string))
 
     return input_string
+
+
+# print(load_json_file('data.json'))
+print(load_json_file('test.json'))
