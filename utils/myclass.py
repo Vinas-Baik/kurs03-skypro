@@ -7,9 +7,10 @@ class MyOperation():
     def __init__(self, id_operation: int, date_operation: str, state_operation: str,
                  operationAmount: dict, description_operation: str, from_operation: str, to_operation: str):
         self.id_operation = id_operation
-        self.date_operation = datetime.strptime(date_operation, '%Y-%m-%dT%H:%M:%S.%f')
+        temp_date_oper = date_operation.split('T')
+        self.date_operation = datetime.strptime(temp_date_oper[0], '%Y-%m-%d')
         self.state_operation = state_operation.upper()
-        self.operationAmount = operationAmount
+        self.operationAmount = operationAmount['amount'] + ' ' + operationAmount['currency']['name']
         self.description_operation = description_operation
         self.from_operation = from_operation
         self.to_operation = to_operation
@@ -29,7 +30,7 @@ class MyOperation():
 
         return f"{self.date_operation.strftime('%d.%m.%Y')} {self.description_operation}\n" \
                f"{from_temp_text} -> {to_text[0]} **{to_text[1][-4:]}\n" \
-               f"{self.operationAmount['amount']} {self.operationAmount['currency']['name']}\n"
+               f"{self.operationAmount} \n"
 
 
 # проверяем создание класса
@@ -40,4 +41,4 @@ class MyOperation():
 # print(temp_oper)
 #
 # print(temp_oper.__repr__())
-
+#

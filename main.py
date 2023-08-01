@@ -10,7 +10,7 @@ def main():
     # Делаем красиво и просим имя пользователя
     print('\n{0:^60}\n'.format('-=== \033[32m ДОБРЫЙ ДЕНЬ \033[39m ===-'))
 
-    user_player = my_utils.check_line_entry('Введи свое имя')
+    user_player = input('Введи свое имя: ').strip()
 
     print(f'Привет \033[32m{user_player.title()}\033[39m')
 
