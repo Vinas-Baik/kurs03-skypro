@@ -29,3 +29,25 @@ def test_myclass():
 
     assert test_my_oper.__repr__() == result_test_repr
 
+    test_my_oper = myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
+                                       {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
+                                       "Перевод с карты на счет", None, "Счет 96527012349577388612")
+    result_test_repr = repr(test_my_oper)
+
+    assert test_my_oper.__repr__() == result_test_repr
+
+    # тестирование проверки вывода print_one_str
+
+    test_my_oper = myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
+                                       {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
+                                       "Перевод с карты на счет", "Maestro 1308795367077170", "Счет 96527012349577388612")
+    result_test_repr = test_my_oper.print_one_str()
+
+    assert test_my_oper.print_one_str() == result_test_repr
+
+    test_my_oper = myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
+                                       {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
+                                       "Перевод с карты на счет", None, "Счет 96527012349577388612")
+    result_test_repr = test_my_oper.print_one_str()
+
+    assert test_my_oper.print_one_str() == result_test_repr
