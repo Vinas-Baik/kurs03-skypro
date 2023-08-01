@@ -29,8 +29,8 @@ def main():
                                                         t_json['operationAmount'], t_json['description'],
                                                         None, t_json['to']))
 
-    # for t_oper in operation_list:
-    #     print(t_oper)
+    for t_oper in operation_list:
+        print(t_oper)
 
     count_EXECUTED = 0
 
