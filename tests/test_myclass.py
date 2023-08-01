@@ -51,3 +51,21 @@ def test_myclass():
     result_test_repr = test_my_oper.print_one_str()
 
     assert test_my_oper.print_one_str() == result_test_repr
+
+    # тестирование проверки вывода print_from_operation и print_to_operation
+
+    test_my_oper = myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
+                                       {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
+                                       "Перевод с карты на счет", "VISA class 1596837868705199", "VISA gold 1596687051837899")
+
+    assert test_my_oper.print_from_operation() == 'VISA class 1596 83** **** 5199'
+    assert test_my_oper.print_to_operation() == 'VISA gold **7899'
+
+    test_my_oper = myclass.MyOperation(667307132, "2022-07-13T18:51:29.313309", "EXECUTED",
+                                       {"amount": "97853.86", "currency": {"name": "руб.","code": "RUB"}},
+                                       "Перевод с карты на счет", None, "VISA gold 1596687051839978")
+
+    assert test_my_oper.print_from_operation() == ''
+    assert test_my_oper.print_to_operation() == 'VISA gold **9978'
+
+

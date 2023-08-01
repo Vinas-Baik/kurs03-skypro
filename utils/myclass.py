@@ -21,26 +21,17 @@ class MyOperation():
                f"'{self.to_operation}')"
 
     def __str__(self):
-        from_temp_text = ''
-        if self.from_operation != None:
-            from_text = self.from_operation.split()
-            if 'visa' in self.from_operation.lower():
-                from_temp_text = f'{from_text[0]} {from_text[1]} {from_text[2][:4]} {from_text[2][4:6]}** **** {from_text[2][-4:]}'
-            else:
-                from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
-
-        to_temp_text = ''
-        to_text = self.to_operation.split()
-        if 'visa' in self.to_operation.lower():
-            to_temp_text = f'{to_text[0]} {to_text[1]} **{to_text[2][-4:]}'
-        else:
-            to_temp_text = f'{to_text[0]} **{to_text[1][-4:]}'
-
         return f"{self.date_operation.strftime('%d.%m.%Y')} {self.description_operation}\n" \
-               f"{from_temp_text} -> {to_text[0]} **{to_text[1][-4:]}\n" \
+               f"{self.print_from_operation()} -> {self.print_to_operation()}\n" \
                f"{self.operationAmount}\n"
 
-    def print_one_str(self):
+    def print_from_operation(self):
+        """
+        Правильный вывод имени карты и номера счета
+        значение from_operation делится по пробелам
+        Если первый элемент прописан Visa, то выводятся первый и второй элемент имени карты, затем выводится счет в виде XXXX XX** *** XXXX
+        :return:
+        """
         from_temp_text = ''
         if self.from_operation != None:
             from_text = self.from_operation.split()
@@ -48,22 +39,36 @@ class MyOperation():
                 from_temp_text = f'{from_text[0]} {from_text[1]} {from_text[2][:4]} {from_text[2][4:6]}** **** {from_text[2][-4:]}'
             else:
                 from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
+        return from_temp_text
 
+    def print_to_operation(self):
+        """
+        Правильный вывод имени карты и номера счета
+        значение to_operation делится по пробелам
+        Если первый элемент прописан Visa, то выводятся первый и второй элемент имени карты, затем выводится счет в виде **XXXX
+        :return:
+        """
         to_temp_text = ''
         to_text = self.to_operation.split()
         if 'visa' in self.to_operation.lower():
             to_temp_text = f'{to_text[0]} {to_text[1]} **{to_text[2][-4:]}'
         else:
             to_temp_text = f'{to_text[0]} **{to_text[1][-4:]}'
+        return to_temp_text
 
+    def print_one_str(self):
+        """
+        вывод ы одну строку
+        :return:
+        """
         return f"{self.date_operation.strftime('%d.%m.%Y')}\t{self.description_operation}\t" \
-               f"{from_temp_text} -> {to_temp_text}\t" \
+               f"{self.print_from_operation()} -> {self.print_to_operation()}\t" \
                f"{self.operationAmount}"
 
 # проверяем создание класса
 # temp_oper = MyOperation(441945886, "2022-08-26T10:50:58.294041", "EXECUTED",
 #                         {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
-#                         "Перевод организации", "Maestro 1596837868705199", "Счет 64686473678894779589")
+#                         "Перевод организации", "VISA class 1596837868705199", "VISA gold 64686473678894779589")
 #
 # print(temp_oper)
 #
