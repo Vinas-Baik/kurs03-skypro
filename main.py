@@ -5,8 +5,8 @@ FILE_JSON = 'data\operations.json'
 
 operation_list = []     # список операций
 date_list = {}          # словарь дат формируем для сортировки и выборки последних операций
-COUNT_PRINT_OPER = 5
-PRINT_ONE_STRING = True
+COUNT_PRINT_OPER = 5    # количество операций
+PRINT_ONE_STRING = True # вид вывода операций: в одну строку (True) или 3 строки (False)
 
 
 def main():
