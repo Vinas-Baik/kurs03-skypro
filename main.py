@@ -63,9 +63,9 @@ def main():
         for t_oper in operation_list:
             if (t_value == t_oper.id_operation) and (t_oper.state_operation.upper() == 'EXECUTED'):
                 count_executed += 1
-                if PRINT_ONE_STRING:
-                    print(f'\033[32m{count_executed}\033[39m:\t{t_oper.print_one_str()}')             # вывод в одну строку
-                else:
+                if PRINT_ONE_STRING:    # вывод в одну строку
+                    print(f'\033[32m{count_executed}\033[39m:\t{t_oper.print_one_str()}')
+                else:                   # вывод в 3 строки
                     print(f'\033[32m{count_executed} операция:\033[39m\n{t_oper}')
                 break
 
