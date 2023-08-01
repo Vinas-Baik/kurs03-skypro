@@ -30,7 +30,7 @@ class MyOperation():
 
         return f"{self.date_operation.strftime('%d.%m.%Y')} {self.description_operation}\n" \
                f"{from_temp_text} -> {to_text[0]} **{to_text[1][-4:]}\n" \
-               f"{self.operationAmount} \n"
+               f"{self.operationAmount}\n"
 
 
 # проверяем создание класса
