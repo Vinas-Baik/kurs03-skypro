@@ -8,6 +8,7 @@ date_list = {}          # словарь дат формируем для сор
 COUNT_PRINT_OPER = 5
 PRINT_ONE_STRING = True
 
+
 def main():
     #
     #   НАЧАЛО ПРОГРАММЫ
@@ -38,11 +39,11 @@ def main():
                                                         t_json['operationAmount'], t_json['description'],
                                                         None, t_json['to']))
 
-    for t_oper in operation_list:
-        if t_oper.from_operation == None:
-            continue
-        if ('visa' in t_oper.from_operation.lower()) or ('visa' in t_oper.to_operation.lower()):
-            print(t_oper.__repr__())
+    # for t_oper in operation_list:
+    #     if t_oper.from_operation == None:
+    #         continue
+    #     if ('visa' in t_oper.from_operation.lower()) or ('visa' in t_oper.to_operation.lower()):
+    #         print(t_oper.__repr__())
 
     # print("до сортировки")
     # for t_key, t_value in date_list.items():
@@ -61,11 +62,11 @@ def main():
 
         for t_oper in operation_list:
             if (t_value == t_oper.id_operation) and (t_oper.state_operation.upper() == 'EXECUTED'):
-                if PRINT_ONE_STRING:
-                    print(t_oper.print_one_str())             # вывод в одну строку
-                else:
-                    print(t_oper)
                 count_executed += 1
+                if PRINT_ONE_STRING:
+                    print(f'\033[32m{count_executed}\033[39m:\t{t_oper.print_one_str()}')             # вывод в одну строку
+                else:
+                    print(f'\033[32m{count_executed} операция:\033[39m\n{t_oper}')
                 break
 
         if count_executed >= COUNT_PRINT_OPER:
