@@ -3,7 +3,10 @@ import utils.myclass as my_class
 
 FILE_JSON = 'data\operations.json'
 
-operation_list = []
+operation_list = []     # список операций
+date_list = {}          # словарь дат формируем для сортировки и выборки последних операций
+COUNT_PRINT_OPER = 5
+PRINT_ONE_STRING = True
 
 def main():
     #
@@ -19,7 +22,6 @@ def main():
 
     # грузим список операций из файла
     json_list = my_utils.load_json_file(FILE_JSON)
-    date_list = {}  # словарь дат формируем для сортировки и выборки последних операций
 
     # обработка списка с добавлением в список операций
     for t_json in json_list:
@@ -36,8 +38,11 @@ def main():
                                                         t_json['operationAmount'], t_json['description'],
                                                         None, t_json['to']))
 
-    # for t_oper in operation_list:
-    #     print(t_oper.print_one_str())
+    for t_oper in operation_list:
+        if t_oper.from_operation == None:
+            continue
+        if ('visa' in t_oper.from_operation.lower()) or ('visa' in t_oper.to_operation.lower()):
+            print(t_oper.__repr__())
 
     # print("до сортировки")
     # for t_key, t_value in date_list.items():
@@ -56,12 +61,14 @@ def main():
 
         for t_oper in operation_list:
             if (t_value == t_oper.id_operation) and (t_oper.state_operation.upper() == 'EXECUTED'):
-                # print(t_oper.print_one_str())   # вывод в одну строку
-                print(t_oper)
+                if PRINT_ONE_STRING:
+                    print(t_oper.print_one_str())             # вывод в одну строку
+                else:
+                    print(t_oper)
                 count_executed += 1
                 break
 
-        if count_executed == 5:
+        if count_executed >= COUNT_PRINT_OPER:
             break
 
     #

@@ -21,27 +21,43 @@ class MyOperation():
                f"'{self.to_operation}')"
 
     def __str__(self):
+        from_temp_text = ''
         if self.from_operation != None:
             from_text = self.from_operation.split()
-            from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
-        else:
-            from_temp_text = ''
+            if 'visa' in self.from_operation.lower():
+                from_temp_text = f'{from_text[0]} {from_text[1]} {from_text[2][:4]} {from_text[2][4:6]}** **** {from_text[2][-4:]}'
+            else:
+                from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
+
+        to_temp_text = ''
         to_text = self.to_operation.split()
+        if 'visa' in self.to_operation.lower():
+            to_temp_text = f'{to_text[0]} {to_text[1]} **{to_text[2][-4:]}'
+        else:
+            to_temp_text = f'{to_text[0]} **{to_text[1][-4:]}'
 
         return f"{self.date_operation.strftime('%d.%m.%Y')} {self.description_operation}\n" \
                f"{from_temp_text} -> {to_text[0]} **{to_text[1][-4:]}\n" \
                f"{self.operationAmount}\n"
 
     def print_one_str(self):
+        from_temp_text = ''
         if self.from_operation != None:
             from_text = self.from_operation.split()
-            from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
-        else:
-            from_temp_text = ''
+            if 'visa' in self.from_operation.lower():
+                from_temp_text = f'{from_text[0]} {from_text[1]} {from_text[2][:4]} {from_text[2][4:6]}** **** {from_text[2][-4:]}'
+            else:
+                from_temp_text = f'{from_text[0]} {from_text[1][:4]} {from_text[1][4:6]}** **** {from_text[1][-4:]}'
+
+        to_temp_text = ''
         to_text = self.to_operation.split()
+        if 'visa' in self.to_operation.lower():
+            to_temp_text = f'{to_text[0]} {to_text[1]} **{to_text[2][-4:]}'
+        else:
+            to_temp_text = f'{to_text[0]} **{to_text[1][-4:]}'
 
         return f"{self.date_operation.strftime('%d.%m.%Y')}\t{self.description_operation}\t" \
-               f"{from_temp_text} -> {to_text[0]} **{to_text[1][-4:]}\t" \
+               f"{from_temp_text} -> {to_temp_text}\t" \
                f"{self.operationAmount}"
 
 # проверяем создание класса
