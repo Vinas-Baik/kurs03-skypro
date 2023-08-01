@@ -15,11 +15,13 @@ def main():
 
     user_player = input('Введи свое имя: ').strip()
 
-    print(f'Привет \033[32m{user_player.title()}\033[39m')
+    print(f'Привет \033[32m{user_player.title()}\033[39m\n')
 
+    # грузим список операций из файла
     json_list = my_utils.load_json_file(FILE_JSON)
-    date_list = {}
+    date_list = {}  # словарь дат формируем для сортировки и выборки последних операций
 
+    # обработка списка с добавлением в список операций
     for t_json in json_list:
         # print(t_json)
         if t_json == {}:
